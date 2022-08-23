@@ -1,0 +1,64 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center" style="background-color:cyan;border-radius:15px;width:100%;height:100px;text-shadow:0px 5px 10px red;">
+    <h1 class="display-4"><b>Welcome to Loan Management System</b></h1>
+   
+</div>
+<br /><br />
+
+<head>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 1200px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Images/tips_on_getting_a_bank_loan.jpg" alt="Loan" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h3>We can take Loans..! </h3>
+                    <p>We had such a great time..!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/personal-loan-calculator-dollar-bills-pen-thw-121801900.jpg" alt="Loan" width="1100" height="500">
+                <div class="carousel-caption">
+                    <h3>Personal Loans </h3>
+                    <p>We can achieve our goals by taking loan..!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/best-practices-for-home-loans.jpg" alt="Loan" width="1100" height="500" >
+                <div class="carousel-caption">
+                    <h3>Home Loans </h3>
+                    <p>We can create our own house...!</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+
+</body>
+
+<br />
+
