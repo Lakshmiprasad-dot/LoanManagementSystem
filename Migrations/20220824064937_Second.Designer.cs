@@ -3,42 +3,22 @@ using LoanManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoanManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220824064937_Second")]
+    partial class Second
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.27")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationApproval", b =>
-                {
-                    b.Property<int>("ApprovalId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(10)")
-                        .HasMaxLength(10);
-
-                    b.Property<int>("LoanApplicationId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApprovalId");
-
-                    b.HasIndex("LoanApplicationId");
-
-                    b.ToTable("Loan_Applications_Approvals");
-                });
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>
                 {
@@ -118,15 +98,6 @@ namespace LoanManagementSystem.Migrations
                     b.HasIndex("LoanId");
 
                     b.ToTable("Rate_Of_Interests");
-                });
-
-            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationApproval", b =>
-                {
-                    b.HasOne("LoanManagementSystem.Models.LoanApplication", "LoanApplication")
-                        .WithMany("ApplicationApprovals")
-                        .HasForeignKey("LoanApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>

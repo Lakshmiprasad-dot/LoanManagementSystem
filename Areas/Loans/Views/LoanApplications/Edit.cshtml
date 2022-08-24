@@ -1,27 +1,32 @@
-﻿@model LoanManagementSystem.Models.RateOfInterest
+﻿@model LoanManagementSystem.Models.LoanApplication
 
 @{
     ViewData["Title"] = "Edit";
 }
-<center>
+
 <h1>Edit</h1>
-    </center>
-<h4>Rate Of Interest</h4>
+
+<h4>LoanApplication</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RateOfInterestId" />
+            <input type="hidden" asp-for="LoanApplicationId" />
             <div class="form-group">
-                <label asp-for="LoanAmount1" class="control-label"></label>
-                <input asp-for="LoanAmount1" class="form-control" />
-                <span asp-validation-for="LoanAmount1" class="text-danger"></span>
+                <label asp-for="ApplicationHolderName" class="control-label"></label>
+                <input asp-for="ApplicationHolderName" class="form-control" />
+                <span asp-validation-for="ApplicationHolderName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LoanAmount2" class="control-label"></label>
-                <input asp-for="LoanAmount2" class="form-control" />
-                <span asp-validation-for="LoanAmount2" class="text-danger"></span>
+                <label asp-for="IfscCode" class="control-label"></label>
+                <input asp-for="IfscCode" class="form-control" />
+                <span asp-validation-for="IfscCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanAmount" class="control-label"></label>
+                <input asp-for="LoanAmount" class="form-control" />
+                <span asp-validation-for="LoanAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="LoanId" class="control-label"></label>

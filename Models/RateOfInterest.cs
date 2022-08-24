@@ -13,11 +13,11 @@ namespace LoanManagementSystem.Models
         virtual public int RateOfInterestId { get; set; }
 
         [Required]
-        [Display(Name = "Loan amount under 100000")]
+        [Display(Name = "Interest % (under 1 Lakh)")]
         virtual public int LoanAmount1 { get; set; }
 
         [Required]
-        [Display(Name = "Loan amount between 100000 to 500000")]
+        [Display(Name = "Interest % (between 1 Lakh to 10 Lakhs)")]
         virtual public int LoanAmount2 { get; set; }
 
         #region Navigation Properties to the Loan Type Model

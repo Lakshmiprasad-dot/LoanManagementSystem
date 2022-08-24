@@ -12,6 +12,8 @@ namespace LoanManagementSystem.Data
         {
 
         }
+        public DbSet<LoanManagementSystem.Models.LoanApplication> LoanApplication { get; set; }
+        public DbSet<LoanManagementSystem.Models.ApplicationApproval> ApplicationApproval { get; set; }
 
     }
 }

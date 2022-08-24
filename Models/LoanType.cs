@@ -34,9 +34,15 @@ namespace LoanManagementSystem.Models
         public int NumberOfGuaranters { get; set; }
 
 
-        #region Navigation Properties to the rate of interests Model
+        #region Navigation Properties to the rate of interest Model
 
         public ICollection<RateOfInterest> RateOfInterests{ get; set; }
+
+        #endregion
+
+        #region Navigation Properties to the Loan Application Model
+
+        public ICollection<LoanApplication> LoanApplications { get; set; }
 
         #endregion
     }

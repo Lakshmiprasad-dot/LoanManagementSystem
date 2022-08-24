@@ -6,6 +6,11 @@
     <title>@ViewData["Title"] - LoanManagementSystem</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        body{
+            background-image:url('/Images/back.jpg');
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,32 +28,34 @@
                             <img src="~/Images/logo.svg" style="width200px;height:100px;" />
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index"><b style="padding:20px;font-size:25px;margin-top:30px;">Home</b></a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index"><b style="font-size:20px;padding:20px;margin-top:30px;">Home</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy"><b style="font-size:20px;padding:20px;margin-top:30px;">Privacy</b></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b style="font-size:20px;padding:20px;margin-top:30px;">Admin</b></a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b style="font-size:20px;padding:20px;margin-top:30px;color:black;">Admin</b></a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item"
                                    asp-area="Loans" asp-controller="LoanTypes" asp-action="Index">Loan Plans</a>
                                 <a class="dropdown-item"
-                                   href="https://localhost:44327/Loans/Rateofinterests">Interests for loan</a>
+                                   asp-area="Loans" asp-controller="RateOfInterests" asp-action="Index">Interests List for loan</a>
                                 <a class="dropdown-item"
                                    href="https://localhost:44348/Foods/FoodCategories/Create">Users Lists</a>
                                 <a class="dropdown-item"
-                                   href="https://localhost:44348/Foods/Foods/Create">Loans List </a>
+                                   asp-area="Loans" asp-controller="LoanApplications" asp-action="Index1">Loan Applications  List </a>
+                                <a class="dropdown-item"
+                                   asp-area="Loans" asp-controller="ApplicationApprovals" asp-action="Index">Applications Status </a>
 
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b style="font-size:20px;padding:20px;">User</b></a>
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><b style="font-size:20px;padding:20px;color:black;">User</b></a>
                             <div class="dropdown-menu">
 
                                 <a class="dropdown-item"
-                                   href="https://localhost:44348/Foods/Customers/Create">User Registration</a>
+                                   asp-area="Loans" asp-controller="LoanApplications" asp-action="Index">Apply Loan</a>
                                 <a class="dropdown-item"
                                    href="https://localhost:44348/Foods/Foods/index1">Food Items</a>
                                 <a class="dropdown-item"
