@@ -10,6 +10,12 @@
     <h4>LoanApplication</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LoanType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LoanType.LoanTypeName)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ApplicationHolderName)
         </dt>
@@ -28,12 +34,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LoanAmount)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LoanType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LoanType.Details)
-        </dd>
+        
     </dl>
 </div>
 <div>

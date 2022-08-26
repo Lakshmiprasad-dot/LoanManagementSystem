@@ -45,6 +45,12 @@ namespace LoanManagementSystem.Models
         public ICollection<LoanApplication> LoanApplications { get; set; }
 
         #endregion
+
+        #region Navigation Properties to the Loan Eligibility Model
+
+        public ICollection<LoanEligibility> LoanEligibilities { get; set; }
+
+        #endregion
     }
 }
 

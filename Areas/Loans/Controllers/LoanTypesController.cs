@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoanManagementSystem.Data;
 using LoanManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace LoanManagementSystem.Areas.Loans.Controllers
 {
     [Area("Loans")]
+    [Authorize(Roles = "AppAdmin")]
     public class LoanTypesController : Controller
     {
         private readonly ApplicationDbContext _context;

@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LoanManagementSystem.Data;
 using LoanManagementSystem.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace LoanManagementSystem.Areas.Loans.Controllers
 {
     [Area("Loans")]
+    [Authorize(Roles = "AppUser")]
     public class LoanApplicationsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,11 +25,6 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
 
         // GET: Loans/LoanApplications
         public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = _context.LoanApplication.Include(l => l.LoanType);
-            return View(await applicationDbContext.ToListAsync());
-        }
-        public async Task<IActionResult> Index1()
         {
             var applicationDbContext = _context.LoanApplication.Include(l => l.LoanType);
             return View(await applicationDbContext.ToListAsync());

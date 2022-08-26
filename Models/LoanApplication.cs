@@ -27,25 +27,14 @@ namespace LoanManagementSystem.Models
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Display(Name = "Required Loan Amount ($)")]
         public int LoanAmount { get; set; }
-        #region Navigation Properties to the Loan Approvals Model
 
-        public ICollection<ApplicationApproval> ApplicationApprovals { get; set; }
-
-        #endregion
-
-        #region Navigation Properties to the Loan Application Model
+        #region Navigation Properties to the Loan Type Model
         virtual public int LoanId { get; set; }
 
         [ForeignKey(nameof(LoanApplication.LoanId))]
         public LoanType LoanType { get; set; }
 
         #endregion
-
-        
-
-
-
-
 
     }
 }

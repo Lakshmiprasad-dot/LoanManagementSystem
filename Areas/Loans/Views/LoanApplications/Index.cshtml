@@ -3,18 +3,16 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
+<center>
+    <h1 style="color:blue;">Loan Applications List</h1>
+</center>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LoanApplicationId)
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.ApplicationHolderName)
             </th>
@@ -34,9 +32,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoanApplicationId)
-        </td>
+                
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationHolderName)
             </td>
@@ -49,7 +45,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LoanAmount)
             </td>
-            
+           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.LoanApplicationId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.LoanApplicationId">Details</a> |

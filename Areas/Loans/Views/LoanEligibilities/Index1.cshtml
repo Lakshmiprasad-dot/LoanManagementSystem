@@ -1,0 +1,61 @@
+﻿@model IEnumerable<LoanManagementSystem.Models.LoanEligibility>
+
+@{
+    ViewData["Title"] = "EmiCalculate";
+}
+<center>
+    <h1 style="color:blue;">Emi Calculate</h1>
+</center>
+<form>
+<table class="table">
+    <tr>
+        <td>
+            <label>Loan Amount</label>
+        </td>
+        <td>
+            <input class="amount" type="number" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Rate if interest per month</label>
+        </td>
+        <td>
+            <input class="interest" type="number" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Number of months</label>
+        </td>
+        <td>
+            <input class="months" type="number" />
+        </td>
+    </tr>
+</table>
+    <input type="button" onclick="calculate()" display="Calculate" asp-area="Loans" asp-controller="LoanEligibilities" asp-action="Index">
+
+</form>
+<b class="Emi"></b>
+
+
+
+<head>
+    
+    <script>
+        
+
+        function calculate() {
+            var p = document.getElementById("amount").value
+            var r = document.getElementById("interest").value
+            var n = document.getElementById("months").value
+
+            var emi =  p x r x (1 + r) ^ n / ((1 + r) ^ n - 1)
+            document.getElementById("Emi").innerHTML = result)
+                        )
+        }
+
+    </script>
+</head>
+
+
