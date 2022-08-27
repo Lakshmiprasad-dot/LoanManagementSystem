@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<LoanManagementSystem.Models.LoanApplication>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<center>
+    <h1 style="color:blue;">Loan Applications List</h1>
+</center>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplicationId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationHolderName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IfscCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanAmount)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanApplicationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplicationHolderName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanType.LoanTypeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IfscCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanAmount)
+                    </td>
+
+                    <td>
+                    <a href="https://localhost:44327/Loans/ApplicationStatus/Create">Aproval</a>
+                    </td>
+                </tr>
+            
+        }
+    </tbody>
+</table>

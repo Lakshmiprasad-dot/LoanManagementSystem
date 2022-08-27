@@ -13,30 +13,24 @@ using System.Data;
 namespace LoanManagementSystem.Areas.Loans.Controllers
 {
     [Area("Loans")]
-    [Authorize(Roles = "AppUser")]
-    public class LoanApplicationsController : Controller
+    [Authorize(Roles = "AppAdmin")]
+    public class ApplicationStatusController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public LoanApplicationsController(ApplicationDbContext context)
+        public ApplicationStatusController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Loans/LoanApplications
+        // GET: Loans/ApplicationStatus
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.LoanApplication.Include(l => l.LoanType);
+            var applicationDbContext = _context.ApplicationStatus.Include(a => a.LoanApplication);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        public async Task<IActionResult> Index1()
-        {
-            var applicationDbContext = _context.LoanApplication.Include(l => l.LoanType);
-            return View(await applicationDbContext.ToListAsync());
-        }
-
-        // GET: Loans/LoanApplications/Details/5
+        // GET: Loans/ApplicationStatus/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,42 +38,42 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
                 return NotFound();
             }
 
-            var loanApplication = await _context.LoanApplication
-                .Include(l => l.LoanType)
-                .FirstOrDefaultAsync(m => m.LoanApplicationId == id);
-            if (loanApplication == null)
+            var applicationStatus = await _context.ApplicationStatus
+                .Include(a => a.LoanApplication)
+                .FirstOrDefaultAsync(m => m.AplicationStatusId == id);
+            if (applicationStatus == null)
             {
                 return NotFound();
             }
 
-            return View(loanApplication);
+            return View(applicationStatus);
         }
 
-        // GET: Loans/LoanApplications/Create
+        // GET: Loans/ApplicationStatus/Create
         public IActionResult Create()
         {
-            ViewData["LoanId"] = new SelectList(_context.LoanTypes, "LoanId", "LoanTypeName");
+            ViewData["LoanApplicationId"] = new SelectList(_context.LoanApplication, "LoanApplicationId", "ApplicationHolderName");
             return View();
         }
 
-        // POST: Loans/LoanApplications/Create
+        // POST: Loans/ApplicationStatus/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LoanApplicationId,ApplicationHolderName,IfscCode,LoanAmount,LoanId")] LoanApplication loanApplication)
+        public async Task<IActionResult> Create([Bind("AplicationStatusId,ApplicationID,Status,LoanApplicationId")] ApplicationStatus applicationStatus)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(loanApplication);
+                _context.Add(applicationStatus);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LoanId"] = new SelectList(_context.LoanTypes, "LoanId", "LoanTypeName", loanApplication.LoanId);
-            return View(loanApplication);
+            ViewData["LoanApplicationId"] = new SelectList(_context.LoanApplication, "LoanApplicationId", "ApplicationHolderName", applicationStatus.LoanApplicationId);
+            return View(applicationStatus);
         }
 
-        // GET: Loans/LoanApplications/Edit/5
+        // GET: Loans/ApplicationStatus/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,23 +81,23 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
                 return NotFound();
             }
 
-            var loanApplication = await _context.LoanApplication.FindAsync(id);
-            if (loanApplication == null)
+            var applicationStatus = await _context.ApplicationStatus.FindAsync(id);
+            if (applicationStatus == null)
             {
                 return NotFound();
             }
-            ViewData["LoanId"] = new SelectList(_context.LoanTypes, "LoanId", "LoanTypeName", loanApplication.LoanId);
-            return View(loanApplication);
+            ViewData["LoanApplicationId"] = new SelectList(_context.LoanApplication, "LoanApplicationId", "ApplicationHolderName", applicationStatus.LoanApplicationId);
+            return View(applicationStatus);
         }
 
-        // POST: Loans/LoanApplications/Edit/5
+        // POST: Loans/ApplicationStatus/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LoanApplicationId,ApplicationHolderName,IfscCode,LoanAmount,LoanId")] LoanApplication loanApplication)
+        public async Task<IActionResult> Edit(int id, [Bind("AplicationStatusId,ApplicationID,Status,LoanApplicationId")] ApplicationStatus applicationStatus)
         {
-            if (id != loanApplication.LoanApplicationId)
+            if (id != applicationStatus.AplicationStatusId)
             {
                 return NotFound();
             }
@@ -112,12 +106,12 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
             {
                 try
                 {
-                    _context.Update(loanApplication);
+                    _context.Update(applicationStatus);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LoanApplicationExists(loanApplication.LoanApplicationId))
+                    if (!ApplicationStatusExists(applicationStatus.AplicationStatusId))
                     {
                         return NotFound();
                     }
@@ -128,11 +122,11 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LoanId"] = new SelectList(_context.LoanTypes, "LoanId", "LoanTypeName", loanApplication.LoanId);
-            return View(loanApplication);
+            ViewData["LoanApplicationId"] = new SelectList(_context.LoanApplication, "LoanApplicationId", "ApplicationHolderName", applicationStatus.LoanApplicationId);
+            return View(applicationStatus);
         }
 
-        // GET: Loans/LoanApplications/Delete/5
+        // GET: Loans/ApplicationStatus/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -140,31 +134,31 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
                 return NotFound();
             }
 
-            var loanApplication = await _context.LoanApplication
-                .Include(l => l.LoanType)
-                .FirstOrDefaultAsync(m => m.LoanApplicationId == id);
-            if (loanApplication == null)
+            var applicationStatus = await _context.ApplicationStatus
+                .Include(a => a.LoanApplication)
+                .FirstOrDefaultAsync(m => m.AplicationStatusId == id);
+            if (applicationStatus == null)
             {
                 return NotFound();
             }
 
-            return View(loanApplication);
+            return View(applicationStatus);
         }
 
-        // POST: Loans/LoanApplications/Delete/5
+        // POST: Loans/ApplicationStatus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var loanApplication = await _context.LoanApplication.FindAsync(id);
-            _context.LoanApplication.Remove(loanApplication);
+            var applicationStatus = await _context.ApplicationStatus.FindAsync(id);
+            _context.ApplicationStatus.Remove(applicationStatus);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LoanApplicationExists(int id)
+        private bool ApplicationStatusExists(int id)
         {
-            return _context.LoanApplication.Any(e => e.LoanApplicationId == id);
+            return _context.ApplicationStatus.Any(e => e.AplicationStatusId == id);
         }
     }
 }

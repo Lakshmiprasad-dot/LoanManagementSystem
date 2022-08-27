@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LoanManagementSystem.Models.ApplicationStatus>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Loan Application Status</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplication)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationID)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanApplication.ApplicationHolderName)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AplicationStatusId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AplicationStatusId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AplicationStatusId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

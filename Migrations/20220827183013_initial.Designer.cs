@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoanManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220826191447_Initial")]
-    partial class Initial
+    [Migration("20220827183013_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,30 @@ namespace LoanManagementSystem.Migrations
                 .HasAnnotation("ProductVersion", "3.1.27")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationStatus", b =>
+                {
+                    b.Property<int>("AplicationStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LoanApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AplicationStatusId");
+
+                    b.HasIndex("LoanApplicationId");
+
+                    b.ToTable("Loan_Applications_Status");
+                });
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>
                 {
@@ -323,6 +347,15 @@ namespace LoanManagementSystem.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationStatus", b =>
+                {
+                    b.HasOne("LoanManagementSystem.Models.LoanApplication", "LoanApplication")
+                        .WithMany("ApplicationStatuses")
+                        .HasForeignKey("LoanApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>

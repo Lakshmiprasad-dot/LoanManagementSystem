@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LoanManagementSystem.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -233,6 +233,27 @@ namespace LoanManagementSystem.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Loan_Applications_Status",
+                columns: table => new
+                {
+                    AplicationStatusId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationID = table.Column<int>(nullable: false),
+                    Status = table.Column<string>(nullable: false),
+                    LoanApplicationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Loan_Applications_Status", x => x.AplicationStatusId);
+                    table.ForeignKey(
+                        name: "FK_Loan_Applications_Status_Loan_Applications_LoanApplicationId",
+                        column: x => x.LoanApplicationId,
+                        principalTable: "Loan_Applications",
+                        principalColumn: "LoanApplicationId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -278,6 +299,11 @@ namespace LoanManagementSystem.Migrations
                 column: "LoanId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Loan_Applications_Status_LoanApplicationId",
+                table: "Loan_Applications_Status",
+                column: "LoanApplicationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Loan_Eligibility_Criteria_LoanId",
                 table: "Loan_Eligibility_Criteria",
                 column: "LoanId");
@@ -306,7 +332,7 @@ namespace LoanManagementSystem.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Loan_Applications");
+                name: "Loan_Applications_Status");
 
             migrationBuilder.DropTable(
                 name: "Loan_Eligibility_Criteria");
@@ -319,6 +345,9 @@ namespace LoanManagementSystem.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Loan_Applications");
 
             migrationBuilder.DropTable(
                 name: "Loan_Types");

@@ -19,6 +19,30 @@ namespace LoanManagementSystem.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationStatus", b =>
+                {
+                    b.Property<int>("AplicationStatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LoanApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AplicationStatusId");
+
+                    b.HasIndex("LoanApplicationId");
+
+                    b.ToTable("Loan_Applications_Status");
+                });
+
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>
                 {
                     b.Property<int>("LoanApplicationId")
@@ -321,6 +345,15 @@ namespace LoanManagementSystem.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("LoanManagementSystem.Models.ApplicationStatus", b =>
+                {
+                    b.HasOne("LoanManagementSystem.Models.LoanApplication", "LoanApplication")
+                        .WithMany("ApplicationStatuses")
+                        .HasForeignKey("LoanApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>

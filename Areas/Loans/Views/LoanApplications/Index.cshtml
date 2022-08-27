@@ -1,4 +1,7 @@
-﻿@model IEnumerable<LoanManagementSystem.Models.LoanApplication>
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<LoanManagementSystem.Models.LoanApplication>
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -12,7 +15,9 @@
 <table class="table">
     <thead>
         <tr>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.LoanApplicationId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ApplicationHolderName)
             </th>
@@ -31,8 +36,12 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
-                
+            if (@UserManager.GetUserName(User) == item.ApplicationHolderName)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoanApplicationId)
+                    </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationHolderName)
             </td>
@@ -52,6 +61,7 @@
                 <a asp-action="Delete" asp-route-id="@item.LoanApplicationId">Delete</a>
             </td>
         </tr>
+        }
 }
     </tbody>
 </table>

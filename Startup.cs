@@ -2,16 +2,19 @@ using LoanManagementSystem.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Identity;
+
+[assembly: ApiConventionType(typeof(DefaultApiConventions))]
 
 namespace LoanManagementSystem
 {
@@ -73,7 +76,7 @@ namespace LoanManagementSystem
                 config.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "LMS Web",
+                    Title = "Loan Management System",
                     Description = "Library Management System - API version 1"
                 });
             });
@@ -95,7 +98,7 @@ namespace LoanManagementSystem
                 // Add the Swagger Documentation Generation Middleware
                 app.UseSwaggerUI(config =>
                 {
-                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "LMS Web API v1");
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "LoanManagementSystem API v1");
                 });
             }
             else
@@ -111,8 +114,8 @@ namespace LoanManagementSystem
             app.UseRouting();
 
             // Activate the OWIN Middleware to use Authentication and Authorization Services.
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

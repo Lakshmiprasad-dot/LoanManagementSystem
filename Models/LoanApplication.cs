@@ -21,12 +21,18 @@ namespace LoanManagementSystem.Models
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [StringLength(20)]
-        [Display(Name = "IFSC Code ")]
+        [Display(Name = "Account Number ")]
         public string IfscCode { get; set; }
 
         [Required(ErrorMessage = "{0} cannot be empty!")]
         [Display(Name = "Required Loan Amount ($)")]
         public int LoanAmount { get; set; }
+
+        #region Navigation Properties to the Application Status Model
+
+        public ICollection<ApplicationStatus> ApplicationStatuses { get; set; }
+
+        #endregion
 
         #region Navigation Properties to the Loan Type Model
         virtual public int LoanId { get; set; }
@@ -35,6 +41,8 @@ namespace LoanManagementSystem.Models
         public LoanType LoanType { get; set; }
 
         #endregion
+
+
 
     }
 }

@@ -15,6 +15,7 @@ namespace LoanManagementSystem.Data
         {
 
         }
+        public DbSet<LoanManagementSystem.Models.ApplicationStatus> ApplicationStatus { get; set; }
        
         
        
