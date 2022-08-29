@@ -83,45 +83,4 @@
         }
     <br />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LoanTypeName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoanGivenTo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfGuaranters)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoanTypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoanGivenTo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfGuaranters)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LoanId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LoanId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LoanId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+

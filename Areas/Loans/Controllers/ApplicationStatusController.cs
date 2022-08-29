@@ -30,6 +30,12 @@ namespace LoanManagementSystem.Areas.Loans.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
+        public async Task<IActionResult> Index1()
+        {
+            var applicationDbContext = _context.ApplicationStatus.Include(a => a.LoanApplication);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
         // GET: Loans/ApplicationStatus/Details/5
         public async Task<IActionResult> Details(int? id)
         {
